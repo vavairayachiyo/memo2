@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>夢MEMO</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+
+<body>
+
+    <!-- 1110追加ここから-->
+
+    <div class="formline">
+        <p>夢を見た日を入力。下の欄をクリックして選んでください。</p>
+        <br><input type="text" id="calendarTEST"><br>
+    </div>
+    <div class="formline">
+        <textarea id="text_area" class="note"></textarea>
+        <!--/div -->
+        <!--/div -->
+    </div>
+    <div class="formline">
+        <ul>
+            <li id="save">保存</li>
+            <li id="clear">消去</li>
+        </ul>
+    </div>
+
+
+    <h3>前回見た夢の内容を</h3>
+    <div class="formline">
+        <button type="button" id="call">呼び出し</button>
+    </div><br>
+    <div class="yumeLogs">
+        <div class="maeYume"><textarea id="yumeLog1"></textarea></div>
+        <div class="maeYume"><textarea id="yumeLog2"></textarea></div>
+        <div class="maeYume"><textarea id="yumeLog3"></textarea></div>
+        <div class="maeYume"><textarea id="yumeLog4"></textarea></div>
+        <!--/div -->
+    </div>
+    <!--div -->
+    <!-- ここまで -->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+
+    <!--script>
+            const h1 = document.querySelector('h1')
+            h1.animate([{ opacity: '0' }, { opacity: '1' }], 3000)
+        </script -->
+
+    <script>
+        //カレンダー
+        flatpickr.localize(flatpickr.l10ns.ja);
+        flatpickr('#calendarTEST');
+    </script>
+
+    <script>
+
+        // 保存
+        $('#save').on('click', function () {
+            const data = {
+                date: $('#calendarTEST').val(),
+                text: $('#text_area').val(),
+            }
+            //const text = $('#text_area').val();
+            //console.log(text);
+            console.log(data);
+            //localStorage.setItem('memo',text);
+            const jsonData = JSON.stringify(data);
+            console.log(jsonData);
+            localStorage.setItem('memo', jsonData);
+
+        });
+
+        // 削除
+        $('#clear').on('click', function () {
+            localStorage.removeItem('memo');
+            $('#text_area').val('');
+        });
+
+        // 取得
+        $('#call').on('click', function () {
+            if (localStorage.getItem('memo')) {
+                //const text = localStorage.getItem('memo');
+                const jsonData = localStorage.getItem('memo');
+                console.log(jsonData);
+                const data = JSON.parse(jsonData);
+                console.log(data);
+                $('#calendarTEST').val(data.date);
+                $('#text_area').val(data.text);
+                document.getElementById('yumeLog1').textContent = data.date + data.text;
+                //document.getElementById('yumeLog').textContent = text;
+                //console.log(text);
+            }
+            else {
+                window.alert('夢の記録がありません');
+            }
+        });
+
+    </script>
+</body>
+
+</html>

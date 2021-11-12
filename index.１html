@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css/main.css">
+</head>
+
+<body>
+
+    <div class="title_box">
+        <h1>夢memo</h1>
+        <!-- </div> -->
+        <p>夢の内容を記録するノートです</p>
+        <p>夢に出てきた登場人物、場所、夢でしていた事などを忘れないように書き留めておくメモです</p>
+        <p>夢占いをする時にmemoを参考にしてみて下さい</p>
+
+    </div>
+
+    <div class="area_flexbox">
+        <!-- 紫のボックスの親要素 -->
+        <ul class="list">
+            <li><a href="" class="bottons botton1">夢memo</a></li>
+            <!-- <a href="" class="bottons botton1">memo</a> -->
+            <li><a href="https://8761234.jp/dream" class="bottons botton２">夢占い</a></li>
+            <!-- <a href="" class="bottons botton２">link</a> -->
+        </ul>
+
+    </div>
+
+    <div id="memo"></div>
+
+
+
+    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+
+        const h1 = document.querySelector('h1')
+        h1.animate([{ opacity: '0' }, { opacity: '1' }], 3000)
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
